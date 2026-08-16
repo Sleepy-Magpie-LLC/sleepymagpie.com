@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThoughtQueue · Sleepy Magpie, LLC</title>
+  <meta name="description" content="A macOS menu bar app for capturing quick notes from anywhere and sending them wherever you need them next.">
+  <meta property="og:title" content="ThoughtQueue · Sleepy Magpie, LLC">
+  <meta property="og:description" content="A macOS menu bar app for capturing quick notes from anywhere and sending them wherever you need them next.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sleepymagpie.com/tools/thoughtqueue.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="../index.html"><img src="../logo.png" alt="Sleepy Magpie logo">Sleepy Magpie</a>
+  </header>
+
+  <main class="tool-page">
+    <div class="tool-hero">
+      <h1>ThoughtQueue</h1>
+      <p class="tool-tagline">Capture a thought without breaking flow, then send it wherever you need it next.</p>
+      <div class="tool-tags">
+        <span class="tag">macOS</span>
+        <span class="tag">Swift</span>
+        <span class="tag">Menu bar</span>
+        <span class="tag">Markdown</span>
+      </div>
+      <div class="tool-links">
+        <a class="btn" href="https://github.com/faulker/ThoughtQueue" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        <a class="btn btn-ghost" href="../index.html">All projects</a>
+      </div>
+    </div>
+
+    <section class="tool-section">
+      <h2>What it is</h2>
+      <p>ThoughtQueue is a macOS menu bar app for capturing quick notes from anywhere, then doing something useful with them right away: copy them, or send them straight into whatever app or command you use next. Notes are plain markdown files on disk, not locked in a database or tied to any one destination.</p>
+      <p>It's built for the moment you're reading something, debugging code, or just thinking out loud and want to jot it down without breaking flow. Grab selected text with a hotkey (or type a note from scratch), file it into a category, and when you're ready, copy it or fire it off to an editor, a CLI tool, or an app like Claude Desktop with one click.</p>
+      <p>It's for anyone who wants a fast capture tool that stays out of the way, keeps notes as plain text you can grep and back up yourself, and lets you decide where a note goes next instead of locking you into one app.</p>
+    </section>
+
+    <section class="tool-section">
+      <h2>Features</h2>
+      <ul class="feature-list">
+        <li><strong>Global hotkeys</strong>: capture selected text from any app without switching windows</li>
+        <li><strong>Quick and detailed capture</strong>: one shortcut saves a note instantly, another opens the note editor pre-filled with the selection so you can adjust it before saving</li>
+        <li><strong>Note editor</strong>: a single window per note with a view/edit toggle. Markdown renders by default; click or start typing to edit the raw text, with autosave and full undo/redo</li>
+        <li><strong>Navigation panel</strong>: a collapsible sidebar lists every note grouped by category, with a search field</li>
+        <li><strong>Run notes anywhere</strong>: configurable "Open With" destinations run a shell command against a note's file, or paste it into an app like Claude Desktop. Comes with Claude and Zed presets, and you can add your own</li>
+        <li><strong>Categories</strong>: organize notes however you want, with folders on disk to match, and create new ones inline as you go</li>
+        <li><strong>On-device auto-title and auto-category</strong>: on macOS 26+, suggests a title and category for each capture using Apple's on-device model, with a review toast to accept, tweak, or dismiss</li>
+        <li><strong>Local, plain-text storage</strong>: notes are markdown files in a folder you choose, no database, so they're greppable and easy to sync or back up yourself</li>
+        <li><strong>Synced settings</strong>: on by default, mirrors your preferences into the store folder so they follow you to your other devices if that folder is in iCloud or Dropbox</li>
+      </ul>
+    </section>
+
+    <section class="tool-section">
+      <h2>Screenshots</h2>
+      <div class="shots">
+        <figure class="shot">
+          <img src="../assets/thoughtqueue/popover.png" alt="Menu bar popover showing notes list" loading="lazy">
+          <figcaption>Left-click the menu bar icon to see your notes with quick actions: copy, open with, clone, delete.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/thoughtqueue/note-editor.png" alt="Note editor showing rendered markdown" loading="lazy">
+          <figcaption>Every note opens in its own window with a view/edit toggle; markdown renders by default.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/thoughtqueue/sidebar.png" alt="Note window with the navigation sidebar open" loading="lazy">
+          <figcaption>The collapsible sidebar lists every note grouped by category, with search.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/thoughtqueue/preferences.png" alt="Preferences window" loading="lazy">
+          <figcaption>Configure appearance, hotkeys, "Open With" destinations, fonts, auto-update intervals, and more.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="tool-section">
+      <h2>Getting started</h2>
+      <p>ThoughtQueue builds from source with Xcode and XcodeGen; there's no App Store release. Clone the repo and run the build script for a fast, unsigned debug build:</p>
+      <pre><code>brew install xcodegen  # if you don't have it
+
+git clone https://github.com/faulker/ThoughtQueue.git
+cd ThoughtQueue
+./build.sh              # defaults to Debug
+open build/Build/Products/Debug/ThoughtQueue.app</code></pre>
+      <p>The repo's README covers signed release builds, running the test suite, and the rest of the feature list.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html">Sleepy Magpie, LLC</a>
+  </footer>
+</body>
+</html>

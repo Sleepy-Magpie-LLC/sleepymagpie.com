@@ -4,188 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sleepy Magpie, LLC</title>
-  <meta name="description" content="Sleepy Magpie, LLC — Coming soon.">
+  <meta name="description" content="Sleepy Magpie, LLC builds small, focused tools for developers and for keeping track of things.">
   <meta property="og:title" content="Sleepy Magpie, LLC">
-  <meta property="og:description" content="Sleepy Magpie, LLC — Coming soon.">
+  <meta property="og:description" content="Sleepy Magpie, LLC builds small, focused tools for developers and for keeping track of things.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sleepymagpie.com">
-  <style>
-    @font-face {
-      font-family: 'FacultyGlyphic';
-      src: url('FacultyGlyphic-Regular.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #0a0a0a;
-      background-image: radial-gradient(ellipse at 50% 40%, rgba(99, 65, 145, 0.15) 0%, transparent 60%);
-      color: #e8e8e8;
-      font-family: 'FacultyGlyphic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    .container {
-      text-align: center;
-      animation: fadeSlideUp 1.2s ease-out both;
-    }
-
-    .logo {
-      width: 280px;
-      height: auto;
-      margin: 0 auto 2rem;
-      animation: float 4s ease-in-out infinite;
-      filter: invert(1) drop-shadow(0 0 40px rgba(99, 65, 145, 0.4));
-    }
-
-    h1 {
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, #e8e8e8 0%, #b8a0d4 50%, #e8e8e8 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 6s ease-in-out infinite;
-    }
-
-    .divider {
-      width: 60px;
-      height: 1px;
-      margin: 1.5rem auto 1rem;
-      background: linear-gradient(90deg, transparent, rgba(99, 65, 145, 0.5), transparent);
-    }
-
-    .llc {
-      font-size: clamp(0.75rem, 2vw, 1rem);
-      font-weight: 400;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: #666;
-    }
-
-    @keyframes fadeSlideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes shimmer {
-      0%, 100% {
-        background-position: 0% center;
-      }
-      50% {
-        background-position: 200% center;
-      }
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    .repos {
-      width: 100%;
-      max-width: 720px;
-      padding: 3rem 1.5rem 2rem;
-      animation: fadeSlideUp 1.2s ease-out 0.4s both;
-    }
-
-    .repos h2 {
-      font-size: clamp(1rem, 3vw, 1.25rem);
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #888;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    #repo-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .repo-card {
-      display: block;
-      padding: 1rem 1.25rem;
-      border: 1px solid rgba(99, 65, 145, 0.25);
-      border-radius: 8px;
-      background: rgba(99, 65, 145, 0.06);
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 0.3s, background 0.3s;
-    }
-
-    .repo-card:hover {
-      border-color: rgba(99, 65, 145, 0.5);
-      background: rgba(99, 65, 145, 0.12);
-    }
-
-    .repo-name {
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: #b8a0d4;
-      margin-bottom: 0.3rem;
-    }
-
-    .repo-desc {
-      font-size: 0.85rem;
-      color: #888;
-      line-height: 1.4;
-    }
-
-    .repo-lang {
-      font-size: 0.75rem;
-      color: #666;
-      margin-top: 0.4rem;
-      letter-spacing: 0.05em;
-    }
-
-    .repos-empty {
-      text-align: center;
-      color: #555;
-      font-size: 0.85rem;
-    }
-
-    @media (max-width: 480px) {
-      .logo {
-        width: 200px;
-        margin-bottom: 1.5rem;
-      }
-
-      .repos {
-        padding: 2rem 1rem 1.5rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="home">
   <div class="container">
     <img class="logo" src="logo.png" alt="Sleepy Magpie logo">
 
@@ -196,72 +22,43 @@
 
   <section class="repos">
     <h2>Projects</h2>
-    <div id="repo-list"></div>
+    <div id="repo-list">
+      <a class="repo-card" href="tools/ccsm.html">
+        <div class="repo-name">ccsm</div>
+        <div class="repo-desc">A terminal UI that puts your Claude Code and Cursor Agent CLI sessions in one place. Browse past conversations, resume where you left off, and schedule new ones.</div>
+        <div class="repo-lang">Rust · Terminal UI</div>
+      </a>
+
+      <a class="repo-card" href="tools/wtm.html">
+        <div class="repo-name">wtm</div>
+        <div class="repo-desc">A friendly top-level interface for git worktrees, built for running AI agents on several branches at once. Available as a TUI, a scriptable CLI, and an MCP server.</div>
+        <div class="repo-lang">Rust · TUI, CLI, MCP</div>
+      </a>
+
+      <a class="repo-card" href="tools/thoughtqueue.html">
+        <div class="repo-name">ThoughtQueue</div>
+        <div class="repo-desc">A macOS menu bar app for capturing quick notes from anywhere, then copying them or firing them straight into whatever app or command you use next. Notes stay plain markdown on disk.</div>
+        <div class="repo-lang">Swift · macOS</div>
+      </a>
+
+      <a class="repo-card" href="tools/cirrus.html">
+        <div class="repo-name">Cirrus</div>
+        <div class="repo-desc">A native macOS menu bar app for managing rclone sync jobs through reusable profiles. Configure, schedule, run, and watch your syncs instead of hand-writing shell scripts.</div>
+        <div class="repo-lang">Swift · macOS</div>
+      </a>
+
+      <a class="repo-card" href="tools/book-release-tracker.html">
+        <div class="repo-name">Book Release Tracker</div>
+        <div class="repo-desc">Watches your Audiobookshelf series, matches them against Hardcover, and tells you when a new book in a series you follow is announced or released.</div>
+        <div class="repo-lang">Rust · Self-hosted</div>
+      </a>
+
+      <a class="repo-card" href="tools/rekibase.html">
+        <div class="repo-name">RekiBase</div>
+        <div class="repo-desc">A mobile-first personal collection tracker. Build your own collections with custom fields and catalog wines, restaurants, books, or anything else, all stored on your device.</div>
+        <div class="repo-lang">Flutter · Android</div>
+      </a>
+    </div>
   </section>
-
-  <script>
-    const IGNORED_REPOS = ["sleepymagpie.com"];
-
-    function createRepoCard(repo) {
-      const a = document.createElement("a");
-      a.className = "repo-card";
-      a.href = repo.html_url;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-
-      const name = document.createElement("div");
-      name.className = "repo-name";
-      name.textContent = repo.name;
-      a.appendChild(name);
-
-      if (repo.description) {
-        const desc = document.createElement("div");
-        desc.className = "repo-desc";
-        desc.textContent = repo.description;
-        a.appendChild(desc);
-      }
-
-      if (repo.language) {
-        const lang = document.createElement("div");
-        lang.className = "repo-lang";
-        lang.textContent = repo.language;
-        a.appendChild(lang);
-      }
-
-      return a;
-    }
-
-    fetch("https://api.github.com/orgs/Sleepy-Magpie-LLC/repos?type=public")
-      .then(res => {
-        if (!res.ok) throw new Error(res.statusText);
-        return res.json();
-      })
-      .then(repos => {
-        const filtered = repos.filter(r =>
-          !r.fork && !r.archived && !IGNORED_REPOS.includes(r.name)
-        );
-
-        const list = document.getElementById("repo-list");
-
-        if (filtered.length === 0) {
-          const empty = document.createElement("p");
-          empty.className = "repos-empty";
-          empty.textContent = "No public repos yet.";
-          list.appendChild(empty);
-          return;
-        }
-
-        filtered
-          .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at))
-          .forEach(r => list.appendChild(createRepoCard(r)));
-      })
-      .catch(() => {
-        const list = document.getElementById("repo-list");
-        const err = document.createElement("p");
-        err.className = "repos-empty";
-        err.textContent = "Could not load repos.";
-        list.appendChild(err);
-      });
-  </script>
 </body>
 </html>

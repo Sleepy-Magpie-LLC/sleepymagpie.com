@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cirrus · Sleepy Magpie, LLC</title>
+  <meta name="description" content="A macOS menu bar app for running rclone sync jobs from reusable profiles instead of hand-written shell scripts.">
+  <meta property="og:title" content="Cirrus · Sleepy Magpie, LLC">
+  <meta property="og:description" content="A macOS menu bar app for running rclone sync jobs from reusable profiles instead of hand-written shell scripts.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sleepymagpie.com/tools/cirrus.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="../index.html"><img src="../logo.png" alt="Sleepy Magpie logo">Sleepy Magpie</a>
+  </header>
+
+  <main class="tool-page">
+    <div class="tool-hero">
+      <h1>Cirrus</h1>
+      <p class="tool-tagline">Run your rclone sync jobs from the menu bar, with reusable profiles instead of shell scripts.</p>
+      <div class="tool-tags">
+        <span class="tag">macOS</span>
+        <span class="tag">Swift</span>
+        <span class="tag">Menu bar</span>
+        <span class="tag">rclone</span>
+      </div>
+      <div class="tool-links">
+        <a class="btn" href="https://github.com/Sleepy-Magpie-LLC/Cirrus" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        <a class="btn btn-ghost" href="../index.html">All projects</a>
+      </div>
+    </div>
+
+    <section class="tool-section">
+      <h2>What it is</h2>
+      <p>Cirrus is a native macOS menu bar app for running <a href="https://rclone.org/" target="_blank" rel="noopener noreferrer">rclone</a> sync jobs without writing or maintaining shell scripts for them. Instead of a script per job, you set up a profile: a source and destination, the rclone action to run, ignore patterns, and any extra flags. Cirrus turns that into the actual rclone command and manages running it.</p>
+      <p>It works through two surfaces. Click the menu bar icon and you get a compact tray popup listing every profile with a status badge and its last run time, so starting or canceling a job is two clicks away. Open the main window when you need more room, and you get three tabs: Profiles for creating, editing, and dry-running your configs, History for browsing past runs and their logs, and Settings for pointing Cirrus at your rclone binary.</p>
+      <p>It's for anyone who's been copying and tweaking the same rclone command or shell script for every remote or backup job, and would rather manage that as a list of reusable profiles with a GUI on top, including scheduling so jobs can fire on their own.</p>
+    </section>
+
+    <section class="tool-section">
+      <h2>Features</h2>
+      <ul class="feature-list">
+        <li><strong>Profile management</strong>: configure source and destination endpoints (local path or remote), the rclone action, ignore patterns, and extra flags, per profile</li>
+        <li><strong>Paste-to-create</strong>: paste an existing rclone command like <code>rclone sync ~/docs gdrive:backup --exclude "*.tmp"</code> and Cirrus parses it into a profile's form fields automatically</li>
+        <li><strong>Multiple sync actions</strong>: sync, copy, move, bisync, or delete, chosen per profile (bisync auto-adds <code>--resync</code> on its first run)</li>
+        <li><strong>Cron scheduling</strong>: build a schedule visually or type a raw cron expression; jobs fire automatically while the app is running</li>
+        <li><strong>Live log streaming</strong>: watch rclone's output in real time while a job runs</li>
+        <li><strong>History &amp; log viewer</strong>: browse per-profile run history with syntax-highlighted logs (red for errors, yellow for warnings)</li>
+        <li><strong>Network detection</strong>: jobs won't start when you're offline</li>
+        <li><strong>Status badges</strong>: color and shape indicators (green checkmark, red xmark, yellow clock) show a profile's last result in the tray popup, profile list, and history</li>
+      </ul>
+    </section>
+
+    <section class="tool-section">
+      <h2>Screenshots</h2>
+      <div class="shots">
+        <figure class="shot">
+          <img src="../assets/cirrus/tray-popup.png" alt="Menu bar tray popup showing profiles with status badges and last run times" loading="lazy">
+          <figcaption>Click the menu bar icon to see every profile with a status badge, last run time, and start/cancel controls.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/cirrus/profiles.png" alt="Main window Profiles tab with sync configurations" loading="lazy">
+          <figcaption>The Profiles tab lists your sync configurations, with create, edit, delete, and dry-run.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/cirrus/history.png" alt="History tab with per-profile run history and status filters" loading="lazy">
+          <figcaption>The History tab shows per-profile run history, filterable by status.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/cirrus/log-viewer.png" alt="Log viewer with syntax-highlighted rclone output" loading="lazy">
+          <figcaption>The log viewer syntax-highlights rclone output, so errors and warnings stand out.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/cirrus/profile-editor.png" alt="Profile editor with source, destination, action, and ignore pattern configuration" loading="lazy">
+          <figcaption>The profile editor covers source, destination, action, ignore patterns, and extra flags.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="tool-section">
+      <h2>Getting started</h2>
+      <p>You'll need rclone itself; Cirrus auto-detects it in your PATH on first launch, or you can point it to a binary manually in Settings (it can also install rclone to <code>~/.local/bin</code> for you). Cirrus builds from source with Xcode and XcodeGen; there's no App Store release.</p>
+      <pre><code>git clone https://github.com/Sleepy-Magpie-LLC/Cirrus.git
+cd Cirrus
+
+brew install xcodegen  # if you don't have it
+xcodegen generate
+
+xcodebuild -project Cirrus.xcodeproj -scheme Cirrus -configuration Release build</code></pre>
+      <p>The repo's README covers debug builds, finding the built app in DerivedData, running the test suite, and the rest of the feature list.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html">Sleepy Magpie, LLC</a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ccsm · Sleepy Magpie, LLC</title>
+  <meta name="description" content="A terminal UI that puts your Claude Code and Cursor Agent CLI sessions in one place, with a usage-aware scheduler for long-running jobs.">
+  <meta property="og:title" content="ccsm · Sleepy Magpie, LLC">
+  <meta property="og:description" content="A terminal UI that puts your Claude Code and Cursor Agent CLI sessions in one place, with a usage-aware scheduler for long-running jobs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sleepymagpie.com/tools/ccsm.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="../index.html"><img src="../logo.png" alt="Sleepy Magpie logo">Sleepy Magpie</a>
+  </header>
+
+  <main class="tool-page">
+    <div class="tool-hero">
+      <h1>ccsm</h1>
+      <p class="tool-tagline">A terminal UI for every Claude Code and Cursor Agent session you've got going, plus a scheduler that works while you're away.</p>
+      <div class="tool-tags">
+        <span class="tag">Rust</span>
+        <span class="tag">Terminal UI</span>
+        <span class="tag">Claude Code</span>
+        <span class="tag">Cursor</span>
+        <span class="tag">Cross-platform</span>
+      </div>
+      <div class="tool-links">
+        <a class="btn" href="https://github.com/faulker/ccsm" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        <a class="btn btn-ghost" href="../index.html">All projects</a>
+      </div>
+    </div>
+
+    <section class="tool-section">
+      <h2>What it is</h2>
+      <p>ccsm (Claude Code Session Manager) is a terminal UI that puts your Claude Code and Cursor Agent CLI sessions in one place. Instead of hunting through terminal history or juggling separate windows, you get one list: browse past conversations, resume where you left off, and spin up new sessions, all without leaving the terminal.</p>
+      <p>It's built for anyone who juggles multiple projects or context-switches between agent sessions often. Sessions are grouped by project, live tmux-backed sessions show real-time activity indicators, and a scrollable preview lets you see what a conversation was about before you resume it.</p>
+      <p>ccsm also includes a usage-aware scheduler. You can dispatch a Claude Code session with a prompt and let it run unattended: the watcher pauses the session before your usage budget runs out and picks it back up automatically once the window resets.</p>
+    </section>
+
+    <section class="tool-section">
+      <h2>Features</h2>
+      <ul class="feature-list">
+        <li><strong>Tabbed main window</strong>: <code>Tab</code> cycles the Sessions browser, the Jobs manager, and Config, all three sharing the same list and detail layout</li>
+        <li><strong>Claude + Cursor</strong>: one merged list of Claude Code sessions and Cursor Agent CLI chats, with rows marked by source and a key to cycle between both, Claude only, or Cursor only</li>
+        <li><strong>Tree &amp; flat views</strong>: browse sessions grouped by project or as a flat, newest-first list</li>
+        <li><strong>Conversation preview</strong>: a scrollable preview of the last 20 turns, with the session's working directory and git branch in the info bar</li>
+        <li><strong>Live sessions</strong>: start, attach, detach, rename, and stop tmux-backed sessions, with activity indicators for active, idle, and waiting-for-input states</li>
+        <li><strong>Usage-aware scheduling</strong>: dispatch a session with a prompt, pause it automatically before your 5-hour budget runs out, and continue it once the window resets</li>
+        <li><strong>Jobs know when they're finished</strong>: a stop hook, a completion marker in the transcript, and an idle fallback all work together so a finished job is marked done instead of endlessly re-dispatched</li>
+        <li><strong>Directory browser</strong>: browse for any path the app needs, a session's directory, a job's working directory, or the underlying binaries, instead of typing it by hand</li>
+        <li><strong>Auto-update</strong>: background update checks with one-key install, SHA256 checksum verification, and an automatic restart</li>
+        <li><strong>Favorites &amp; filtering</strong>: pin projects to the top of the list, filter by name or path, and toggle a live-only view</li>
+      </ul>
+    </section>
+
+    <section class="tool-section">
+      <h2>Screenshots</h2>
+      <div class="shots">
+        <figure class="shot">
+          <img src="../assets/ccsm/sessions-tree-view.png" alt="ccsm's tree view showing sessions grouped by project, with an expanded group and a conversation preview on the right" loading="lazy">
+          <figcaption>Sessions grouped by project with an expanded group showing individual sessions. The right pane shows a scrollable conversation preview, with the session's working directory and git branch in the info bar.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/ccsm/jobs-tab.png" alt="The Jobs tab, listing scheduled jobs on the left with a selected job's detail and history on the right" loading="lazy">
+          <figcaption>The scheduler's view: jobs on the left colored by state, the selected job's full detail on the right. The history at the bottom shows the usage-aware behavior, pausing when usage crossed the threshold and resuming once the window reset.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/ccsm/job-form.png" alt="The new job form for dispatching a scheduled session" loading="lazy">
+          <figcaption>Press n on the Jobs tab to dispatch a new session: a name, a working directory, the prompt to start with, and the pause/resume behavior the watcher should apply.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="tool-section">
+      <h2>Getting started</h2>
+      <p>On macOS or Linux, the quick install script downloads the latest release binary from GitHub and installs it to <code>~/.local/bin/ccsm</code> (make sure that's on your <code>PATH</code>):</p>
+      <pre><code>curl -fsSL https://raw.githubusercontent.com/faulker/ccsm/main/remote-install.sh | bash</code></pre>
+      <p>Then just run it:</p>
+      <pre><code>ccsm</code></pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html">Sleepy Magpie, LLC</a>
+  </footer>
+</body>
+</html>

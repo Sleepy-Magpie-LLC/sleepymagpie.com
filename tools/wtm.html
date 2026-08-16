@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wtm · Sleepy Magpie, LLC</title>
+  <meta name="description" content="A terminal UI, CLI, and MCP server for managing git worktrees and everyday git, built for working with AI agents across multiple branches at once.">
+  <meta property="og:title" content="wtm · Sleepy Magpie, LLC">
+  <meta property="og:description" content="A terminal UI, CLI, and MCP server for managing git worktrees and everyday git, built for working with AI agents across multiple branches at once.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sleepymagpie.com/tools/wtm.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="../index.html"><img src="../logo.png" alt="Sleepy Magpie logo">Sleepy Magpie</a>
+  </header>
+
+  <main class="tool-page">
+    <div class="tool-hero">
+      <h1>wtm</h1>
+      <p class="tool-tagline">A friendly top-level interface for git worktrees, built for working with AI agents on multiple branches at once.</p>
+      <div class="tool-tags">
+        <span class="tag">Rust</span>
+        <span class="tag">Terminal UI</span>
+        <span class="tag">CLI</span>
+        <span class="tag">MCP</span>
+        <span class="tag">Git</span>
+      </div>
+      <div class="tool-links">
+        <a class="btn" href="https://github.com/faulker/wtm" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        <a class="btn btn-ghost" href="../index.html">All projects</a>
+      </div>
+    </div>
+
+    <section class="tool-section">
+      <h2>What it is</h2>
+      <p>wtm gives you create, list, inspect, and remove worktrees without needing to know the git commands behind them, and it handles the per-repo setup each new worktree needs (copying <code>.env</code> files, running <code>npm install</code>, whatever a repo requires). It goes beyond worktrees too: commit, stash, pull, push, fetch, branches, and log all work by worktree name instead of paths and flags, which is handy whether you're doing the work yourself or an agent is.</p>
+      <p>The TUI is what you get running <code>wtm</code> with no arguments inside a repo. It's five tabs (Worktrees, Changes, Branches, Stash, Settings) covering the worktree list, a diff viewer, branch management, stashing, and repo settings, with everything reachable by keyboard or mouse. Worktrees and branches whose work has landed in the default branch get flagged <code>✓merged</code> so you know what's safe to clean up.</p>
+      <p>The CLI is the scriptable side: every subcommand supports <code>--json</code> output, so it's built to be driven by a script or an agent as easily as by a person. And <code>wtm mcp</code> runs an MCP server over stdio, exposing the same worktree, commit, merge, stash, remote, and branch operations as MCP tools, so an agent can call them directly instead of shelling out.</p>
+    </section>
+
+    <section class="tool-section">
+      <h2>Features</h2>
+      <ul class="feature-list">
+        <li><strong>Worktree management</strong>: create, list, inspect, and remove worktrees, with automated per-repo setup like copying <code>.env</code> files and running install commands</li>
+        <li><strong>Everyday git by name</strong>: commit, stash, pull, push, fetch, and log, all addressed by worktree name instead of paths and flags</li>
+        <li><strong>Status flags</strong>: worktrees and branches show <code>unpushed</code>/<code>behind</code> vs upstream, <code>same</code>/<code>changed</code>/<code>outdated</code> vs their base, <code>✓merged</code>, and <code>locked</code></li>
+        <li><strong>Conflict resolver</strong>: a guided flow for merge, rebase, update, cherry-pick, and stash-pop conflicts, showing OURS/THEIRS hunks side by side with hand-editing support</li>
+        <li><strong>Commit log as a tree</strong>: branch and tag names marked on the commits they point to, so forks and merges are visible at a glance</li>
+        <li><strong>JSON everywhere</strong>: every CLI command takes <code>--json</code>, so an agent can drive the whole workflow</li>
+        <li><strong>MCP server</strong>: <code>wtm mcp</code> exposes worktree, commit, merge, stash, remote, and branch operations as MCP tools over stdio</li>
+        <li><strong>Self-updating</strong>: <code>wtm upgrade</code> checks GitHub releases, verifies the SHA-256 checksum, and installs itself</li>
+        <li><strong>Configurable setup</strong>: a per-repo <code>.wtm.toml</code> controls where worktrees go, what files get copied into them, and what setup commands run</li>
+      </ul>
+    </section>
+
+    <section class="tool-section">
+      <h2>Screenshots</h2>
+      <div class="shots">
+        <figure class="shot">
+          <img src="../assets/wtm/tui-worktrees.png" alt="The wtm Worktrees tab showing a table of worktrees with change counts and ahead/behind status, above a preview of the selected worktree's changed files" loading="lazy">
+          <figcaption>The Worktrees tab: every worktree with how many files it has changed, how far ahead or behind its upstream it is, and a live preview of the selected worktree's changed files underneath.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/wtm/tui-changes.png" alt="The wtm Changes tab with a folder tree of changed files on the left and a syntax-highlighted diff on the right" loading="lazy">
+          <figcaption>The Changes tab: changed files grouped into a folder tree on the left, the selected file's syntax-highlighted diff on the right, added lines in green and removed lines in red.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/wtm/tui-branches.png" alt="The wtm Branches tab listing local branches with where each is checked out, upstream tracking, and the last commit" loading="lazy">
+          <figcaption>The Branches tab: every branch with where it's checked out, its upstream, merge status, and its last commit, all in one list.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/wtm/tui-log.png" alt="The wtm commit log drawn as a tree with branch and tag names on the commits they point to" loading="lazy">
+          <figcaption>The commit log drawn as a tree, with branch and tag names marked on the commits they point at so forks and merges are visible at a glance.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="tool-section">
+      <h2>Getting started</h2>
+      <p>Install the latest release (macOS Apple Silicon/Intel, Linux x86_64/ARM64), then initialize a repo:</p>
+      <pre><code>curl -fsSL https://raw.githubusercontent.com/faulker/wtm/main/install.sh | bash
+
+wtm init [--force]                    # guided setup, writes .wtm.toml</code></pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html">Sleepy Magpie, LLC</a>
+  </footer>
+</body>
+</html>

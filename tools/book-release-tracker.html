@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Release Tracker · Sleepy Magpie, LLC</title>
+  <meta name="description" content="A Rust tool that watches your Audiobookshelf series against Hardcover and tells you when a new book in one of them is announced or released.">
+  <meta property="og:title" content="Book Release Tracker · Sleepy Magpie, LLC">
+  <meta property="og:description" content="A Rust tool that watches your Audiobookshelf series against Hardcover and tells you when a new book in one of them is announced or released.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sleepymagpie.com/tools/book-release-tracker.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="../index.html"><img src="../logo.png" alt="Sleepy Magpie logo">Sleepy Magpie</a>
+  </header>
+
+  <main class="tool-page">
+    <div class="tool-hero">
+      <h1>Book Release Tracker</h1>
+      <p class="tool-tagline">Stop checking manually for the next book in a series. It watches for you, and tells you when something's out or on the way.</p>
+      <div class="tool-tags">
+        <span class="tag">Rust</span>
+        <span class="tag">Self-hosted</span>
+        <span class="tag">Web dashboard</span>
+        <span class="tag">Audiobookshelf</span>
+        <span class="tag">Hardcover</span>
+      </div>
+      <div class="tool-links">
+        <a class="btn" href="https://github.com/faulker/book-release-tracker" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        <a class="btn btn-ghost" href="../index.html">All projects</a>
+      </div>
+    </div>
+
+    <section class="tool-section">
+      <h2>What it is</h2>
+      <p>Book Release Tracker keeps an eye on the audiobook series in your <a href="https://www.audiobookshelf.org/" target="_blank" rel="noopener noreferrer">Audiobookshelf</a> library and matches each one against <a href="https://hardcover.app/" target="_blank" rel="noopener noreferrer">Hardcover</a>'s catalog. When a new book in a series you already own shows up there, whether it's just been announced with a future date or it's already out, you get told about it instead of having to remember to go check.</p>
+      <p>Notifications go out through whichever channels you turn on: a log entry (always on), <a href="https://ntfy.sh/" target="_blank" rel="noopener noreferrer">ntfy</a>, and email. There's also a web dashboard for browsing what's upcoming, what's new, your watchlist, and any series it couldn't confidently match on its own.</p>
+      <p>It's built for people who follow long-running series and don't want to keep manually searching for release dates. Run it as a one-shot check from cron, or as a daemon that checks on a schedule and serves the dashboard continuously.</p>
+    </section>
+
+    <section class="tool-section">
+      <h2>Features</h2>
+      <ul class="feature-list">
+        <li><strong>Series matching</strong>: syncs your Audiobookshelf libraries and matches each series against Hardcover by normalized name, with a manual override for anything it can't resolve on its own</li>
+        <li><strong>Release alerts</strong>: notifies you once when a book in a followed series is announced (upcoming) and once when it's actually released, never twice for the same state</li>
+        <li><strong>Multiple notification channels</strong>: a log notifier that's always active, plus optional ntfy and email</li>
+        <li><strong>Web dashboard</strong>: pages for recent check-run history, upcoming releases, new releases, your watchlist, and unmatched series, all filterable by series or author</li>
+        <li><strong>Watchlist with custom reminders</strong>: watch a specific upcoming release and choose how many days before (or after) it comes out you want the reminder to fire</li>
+        <li><strong>Partial checks</strong>: skip series that already have a future release date on file, so scheduled runs don't waste time re-checking things with nothing new to learn</li>
+        <li><strong>Audnexus enrichment</strong>: optionally pulls narrator, runtime, and summary details for releases that have an ASIN, without ever blocking a notification if it fails</li>
+        <li><strong>Browser-based settings</strong>: edit your config.toml straight from the dashboard, with validation on save and secrets that never display their stored value</li>
+      </ul>
+    </section>
+
+    <section class="tool-section">
+      <h2>Getting started</h2>
+      <p>You'll need a Rust toolchain, an Audiobookshelf API key (from your ABS user's settings), and a Hardcover API token (from your Hardcover account settings). Copy the example config, fill in your Audiobookshelf and Hardcover details, then build and run.</p>
+      <pre><code>cp config.example.toml config.toml
+
+cargo build --release
+
+book-release-tracker --config /path/to/config.toml check
+book-release-tracker --config /path/to/config.toml daemon</code></pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html">Sleepy Magpie, LLC</a>
+  </footer>
+</body>
+</html>
