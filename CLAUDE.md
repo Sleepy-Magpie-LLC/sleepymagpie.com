@@ -29,6 +29,8 @@ Serve the folder statically (`python3 -m http.server`) and open <http://localhos
 
 Tests: `python3 scripts/check-site.py`.
 
+Release: `scripts/release.sh` (deploys to the Cloudflare Worker via Wrangler; config in `wrangler.jsonc`, exclusions in `.assetsignore`).
+
 ## Model Selection
 
 - **Claude Sonnet 5** (`claude-sonnet-5`): default. Copy, styling, and markup edits.

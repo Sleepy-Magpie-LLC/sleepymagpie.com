@@ -1,0 +1,11 @@
+.git
+.claude
+.wrangler
+.DS_Store
+.gitignore
+.assetsignore
+.wtm.toml
+wrangler.jsonc
+scripts
+node_modules
+*.md

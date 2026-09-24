@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myphin · Sleepy Magpie, LLC</title>
+  <meta name="description" content="A private, keyboard-friendly budget app that keeps your money data in an encrypted file, in a folder you own.">
+  <meta property="og:title" content="Myphin · Sleepy Magpie, LLC">
+  <meta property="og:description" content="A private, keyboard-friendly budget app that keeps your money data in an encrypted file, in a folder you own.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sleepymagpie.com/tools/myphin.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="../index.html"><img src="../logo.png" alt="Sleepy Magpie logo">Sleepy Magpie</a>
+  </header>
+
+  <main class="tool-page">
+    <div class="tool-hero">
+      <h1>Myphin</h1>
+      <p class="tool-tagline">A private, keyboard-friendly budget app that keeps your money data in a folder you own.</p>
+      <div class="tool-tags">
+        <span class="tag">Rust</span>
+        <span class="tag">Dioxus</span>
+        <span class="tag">Desktop</span>
+        <span class="tag">Personal finance</span>
+      </div>
+      <div class="tool-links">
+        <a class="btn" href="https://github.com/faulker/myphin" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        <a class="btn btn-ghost" href="../index.html">All projects</a>
+      </div>
+    </div>
+
+    <section class="tool-section">
+      <h2>What it is</h2>
+      <p>Myphin pulls in your bank transactions, helps you sort them into categories, and shows how each category is doing against a monthly cap. There's no account to sign up for and no cloud service holding your data. Everything lives in one encrypted file (<code>ledger.enc</code>), in a folder you pick, so you can put it in iCloud Drive, Syncthing, or wherever you already keep backups.</p>
+      <p>Transactions sync through <a href="https://bridge.simplefin.org/" target="_blank" rel="noopener noreferrer">SimpleFIN Bridge</a>, which connects to many banks and card issuers. Sorting them is built for the keyboard: arrow through transactions, type the first few letters of a category, press Enter. Myphin remembers payees, and wildcard rules like <code>*costco*</code> → Groceries handle the rest.</p>
+    </section>
+
+    <section class="tool-section">
+      <h2>Features</h2>
+      <ul class="feature-list">
+        <li><strong>Your data stays yours</strong>: a single ledger file encrypted with Argon2id and XChaCha20-Poly1305, and your passphrase is never saved</li>
+        <li><strong>Real bank data</strong>: connect banks and card issuers through SimpleFIN Bridge, then re-sync any connection from the top bar</li>
+        <li><strong>Fast to categorize</strong>: arrow keys, a category prefix, and Enter, with remembered payees so you rarely do it twice</li>
+        <li><strong>Rules</strong>: wildcard patterns that set a category or mark a row as a transfer, payment, income, or excluded, applied instantly to past and future rows</li>
+        <li><strong>Monthly caps</strong>: set a cap once and it carries forward; the Budget screen shows what's left and what's over at a glance</li>
+        <li><strong>Nested categories</strong>: one level of nesting (like <code>Food › Groceries</code>), with parents rolling up their children's spending</li>
+        <li><strong>Optional AI help</strong>: suggest categories for unknown payees using a hosted service or a model you run yourself, sending only the payee name and direction of money</li>
+        <li><strong>Themes</strong>: Ledger, Ink, Paper, or Newsprint</li>
+      </ul>
+    </section>
+
+    <section class="tool-section">
+      <h2>Screenshots</h2>
+      <div class="shots">
+        <figure class="shot">
+          <img src="../assets/myphin/budget.png" alt="The Myphin Budget screen showing the month's spent, income, and capped totals above category progress bars" loading="lazy">
+          <figcaption>The Budget screen: the month's totals up top, then every category's progress toward its cap, with anything over cap called out in red.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/myphin/activity.png" alt="The Myphin Activity screen listing transactions with their account, category, and amount" loading="lazy">
+          <figcaption>Activity: every transaction in one list, with chips for Uncategorized, AI-sorted, and excluded rows, plus filters by account, category, and month.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/myphin/categories.png" alt="The Myphin Categories and caps screen with descriptions, budget and AI toggles, and cap amounts" loading="lazy">
+          <figcaption>Categories and caps: nest categories, describe what belongs in each, set monthly caps, and choose what counts toward the budget or goes to the AI.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/myphin/rules.png" alt="The Myphin Rules screen with wildcard patterns and the action each one applies" loading="lazy">
+          <figcaption>Rules: wildcard patterns matched against the bank's description, with a preview of every transaction a pattern matches before you save it.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/myphin/setup.png" alt="The Myphin Setup screen showing a connected bank and its accounts" loading="lazy">
+          <figcaption>Setup: connected banks and their accounts, with tabs for AI, appearance, and changing your passphrase.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="tool-section">
+      <h2>Getting started</h2>
+      <p>You'll need <a href="https://rustup.rs/" target="_blank" rel="noopener noreferrer">Rust</a> 1.93 or newer and the <a href="https://dioxuslabs.com/learn/0.7/getting_started/" target="_blank" rel="noopener noreferrer">Dioxus CLI</a>. macOS needs nothing else, Linux needs WebKitGTK, and Windows needs WebView2. Then:</p>
+      <pre><code>cargo install dioxus-cli
+git clone https://github.com/faulker/myphin
+cd myphin
+dx serve --desktop</code></pre>
+      <p>On first launch, pick an empty folder and choose a passphrase. Write it down, since it's never stored anywhere. Then open Setup, paste a setup token from SimpleFIN Bridge, and sync.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html">Sleepy Magpie, LLC</a>
+  </footer>
+</body>
+</html>

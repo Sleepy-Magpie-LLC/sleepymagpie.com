@@ -6,6 +6,7 @@ Runs without any dependencies or build step:
   2. every tool page listed in TOOL_PAGES exists and is linked from index.html
   3. every tool page carries the shared stylesheet, a title, and a link home
   4. no em dashes in the page copy (house style)
+  5. .assetsignore keeps repo internals out of the Cloudflare deploy
 
 Usage: python3 scripts/check-site.py
 Exits 0 when everything passes, 1 otherwise.
@@ -20,14 +21,19 @@ ROOT = Path(__file__).resolve().parent.parent
 TOOL_PAGES = [
     "tools/ccsm.html",
     "tools/wtm.html",
+    "tools/multi-run.html",
     "tools/thoughtqueue.html",
     "tools/cirrus.html",
+    "tools/myphin.html",
     "tools/book-release-tracker.html",
     "tools/rekibase.html",
 ]
 
 REF_RE = re.compile(r'(?:href|src)\s*=\s*"([^"]+)"')
 TAG_RE = re.compile(r"<[^>]+>")
+
+# Paths that must never be uploaded as public assets by `wrangler deploy`.
+ASSETS_IGNORE_REQUIRED = [".git", ".claude", ".wrangler", "scripts", "wrangler.jsonc", "*.md"]
 
 failures = []
 
@@ -56,6 +62,18 @@ def check_no_em_dash(page: Path) -> None:
         failures.append(f"{page.relative_to(ROOT)}: em dash in copy -> {snippet[:80]}")
 
 
+def check_assets_ignore() -> None:
+    """Make sure the deploy ignore list still covers every repo-only path."""
+    ignore = ROOT / ".assetsignore"
+    if not ignore.exists():
+        failures.append(".assetsignore missing, deploy would upload the whole repo")
+        return
+    entries = {line.strip() for line in ignore.read_text(encoding="utf-8").splitlines()}
+    for required in ASSETS_IGNORE_REQUIRED:
+        if required not in entries:
+            failures.append(f".assetsignore does not exclude {required}")
+
+
 def main() -> int:
     pages = sorted(ROOT.glob("*.html")) + sorted(ROOT.glob("tools/*.html"))
     if not pages:
@@ -64,6 +82,8 @@ def main() -> int:
     for page in pages:
         check_local_refs(page)
         check_no_em_dash(page)
+
+    check_assets_ignore()
 
     index = ROOT / "index.html"
     index_html = index.read_text(encoding="utf-8") if index.exists() else ""

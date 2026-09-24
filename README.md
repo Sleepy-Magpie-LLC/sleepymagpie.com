@@ -18,6 +18,9 @@ tools/                one page per tool
   rekibase.html
 assets/<tool>/        screenshots and icons for that tool's page
 scripts/check-site.py the test suite
+scripts/release.sh    deploys the site to the Cloudflare Worker
+wrangler.jsonc        Worker config (static assets from the repo root)
+.assetsignore         repo-only files kept out of the deploy
 ```
 
 ## Setup
@@ -43,6 +46,17 @@ python3 scripts/check-site.py
 ```
 
 It checks that every local `href`/`src` resolves to a file that exists, that every tool page exists and is linked from the home page, that each tool page carries the shared stylesheet and a link back home, and that no em dashes crept into the copy. Exits non-zero on any failure, so it works fine as a CI or pre-commit step.
+
+## Releasing
+
+The site runs as a Cloudflare Worker serving static assets. To push the current commit live:
+
+```sh
+scripts/release.sh            # check, then deploy
+scripts/release.sh --dry-run  # check and bundle, upload nothing
+```
+
+It runs the site checks, refuses to deploy with uncommitted changes (pass `--allow-dirty` to override), then runs `npx wrangler deploy`. You need to be logged in once with `npx wrangler login`.
 
 ## Adding a tool
 
