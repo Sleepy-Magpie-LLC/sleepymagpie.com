@@ -413,6 +413,12 @@ li code {
   background: #000;
 }
 
+/* Portrait phone screenshots: cap the width so they don't tower over the page. */
+.shot-phone {
+  max-width: 280px;
+  justify-self: center;
+}
+
 .shot figcaption {
   font-size: 0.8rem;
   color: var(--dim);
