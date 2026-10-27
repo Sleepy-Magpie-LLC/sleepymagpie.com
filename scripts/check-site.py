@@ -27,6 +27,7 @@ TOOL_PAGES = [
     "tools/myphin.html",
     "tools/book-release-tracker.html",
     "tools/rekibase.html",
+    "tools/codeplug-me.html",
 ]
 
 REF_RE = re.compile(r'(?:href|src)\s*=\s*"([^"]+)"')

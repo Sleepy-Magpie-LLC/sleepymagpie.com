@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeplugMe · Sleepy Magpie, LLC</title>
+  <meta name="description" content="Read, edit, and write the codeplug of your ham radio over its USB programming cable, without the manufacturer's Windows-only CPS.">
+  <meta property="og:title" content="CodeplugMe · Sleepy Magpie, LLC">
+  <meta property="og:description" content="Read, edit, and write the codeplug of your ham radio over its USB programming cable, without the manufacturer's Windows-only CPS.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sleepymagpie.com/tools/codeplug-me.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="../index.html"><img src="../logo.png" alt="Sleepy Magpie logo">Sleepy Magpie</a>
+  </header>
+
+  <main class="tool-page">
+    <div class="tool-hero">
+      <h1>CodeplugMe</h1>
+      <p class="tool-tagline">Program your ham radio from a Mac, an Android phone, or the command line, without the manufacturer's Windows-only CPS.</p>
+      <div class="tool-tags">
+        <span class="tag">Rust</span>
+        <span class="tag">macOS</span>
+        <span class="tag">Android</span>
+        <span class="tag">CLI</span>
+        <span class="tag">Ham radio</span>
+      </div>
+      <div class="tool-links">
+        <a class="btn" href="https://github.com/Sleepy-Magpie-LLC/codeplug-me" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        <a class="btn btn-ghost" href="../index.html">All projects</a>
+      </div>
+    </div>
+
+    <section class="tool-section">
+      <h2>What it is</h2>
+      <p>CodeplugMe lets you read, edit, and write the codeplug (the channel and settings memory) of your ham radio over its USB programming cable. It comes as a macOS app, an Android app, and a command-line tool, all built on the same Rust core.</p>
+      <p>It supports the <strong>AnyTone AT-D878UVII Plus</strong> (DMR and analog: channels, zones, scan lists, contacts and talk groups, RX group lists, radio IDs) and the <strong>QYT KT-5000</strong> (analog: 200 channels, VFO channels, common settings, and the message on the radio's display). Both have been tested end to end on real radios: read, edit, write, and read back.</p>
+      <p>It's an unofficial, reverse-engineered tool, not affiliated with or supported by AnyTone or QYT, and it comes with no warranty. Back up your radio before you write anything, and check that what you transmit is legal for your license and region.</p>
+    </section>
+
+    <section class="tool-section">
+      <h2>Features</h2>
+      <ul class="feature-list">
+        <li><strong>Read, edit, write</strong>: pull the full codeplug to a <code>.bin</code> file (which doubles as your backup), edit it, and write it back with a confirmation and progress overlay</li>
+        <li><strong>Safe editing</strong>: your file is never touched until you save, undo and redo work as usual, and unsaved work is kept in a recovery file</li>
+        <li><strong>Duplicate detection</strong>: channels that match another channel's frequencies and mode get a warning mark, with a filter to show just those</li>
+        <li><strong>Bulk edit and Move to Slot</strong>: edit several channels at once, or move an entry and have every zone or list that pointed at it follow along</li>
+        <li><strong>Nearby repeaters</strong>: fill a codeplug with repeaters near a location from Hearham, RadioID, and RepeaterBook, then merge them in or replace your channels</li>
+        <li><strong>Scriptable CLI</strong>: back up, restore, dump a codeplug as JSON, and apply edits from a JSON file</li>
+        <li><strong>KT-5000 rescue</strong>: <code>rescue</code> commands keep reconnecting to a radio stuck in a reboot loop and pick up where they left off</li>
+      </ul>
+    </section>
+
+    <section class="tool-section">
+      <h2>Getting started</h2>
+      <p>For now you build it from source. Install Rust with <a href="https://rustup.rs" target="_blank" rel="noopener noreferrer">rustup</a>, then build the command-line tool. For the macOS app, install Xcode and XcodeGen and run <code>./build.sh</code>. No drivers are needed on macOS.</p>
+      <pre><code>cargo build --release                         # binary: target/release/codeplugme-cli
+
+codeplugme-cli ports                          # list ports; radios are marked
+codeplugme-cli backup my-codeplug.bin         # read the radio to a file</code></pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html">Sleepy Magpie, LLC</a>
+  </footer>
+</body>
+</html>
